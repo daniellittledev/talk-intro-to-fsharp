@@ -1,0 +1,11 @@
+# Bio
+
+Daniel Little has been a professional .NET software developer for over a decade. During that time he's worked at four local startups, including RuleFour where he's currently building financial software with FSharp. His professional interests include functional programming, domain driven design, type systems, software architecture, event sourcing and distributed systems, as well as workplace culture, psychological safety and leadership and trust in high performing teams. When he's not working on a project or blog post, you can find him exploring the world of VR.
+
+# Abstract
+
+Functional programming is on the rise; over the last few years, there has been a huge increase in the number of functional programming languages. But there's also been a huge increase in the number of functional programming features landing in all mainstream languages, with newer languages like Rust, Swift and Kotlin taking heavy amounts of inspiration from functional languages. With the release of C# 8, even more functional programming features have arrived. If C# is your daily driver, you've almost certainly been using functional programming concepts maybe without even realising it.
+
+F# is one of the core .NET languages and comes with .NET Core SDK. It is a multi-paradigm language which includes many new and powerful functional programming features. F# highlights and enhances many of the functional programming features you might be used to in .NET and is often a source of inspiration for vnext C# features. 
+
+In this talk, I will introduce F# and show off some it's unique aspects and idioms. I will be using C# to contrast against and start by exploring the basics and syntax of F#, so it's easy for everyone to follow along. Then we'll explore making an F# application using some common functional patterns. Many of these patterns can be useful in any language, so there is plenty to learn even if you never use F#. Although, I hope to inspire you to experiment with it and to explore the world of functional programming.
