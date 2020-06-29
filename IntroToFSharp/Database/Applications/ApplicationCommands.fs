@@ -1,4 +1,4 @@
-﻿module Database.Aplications.SaveApplication
+﻿module Database.Aplications.ApplicationCommands
 
 open System
 open Infra.Storage

@@ -2,38 +2,44 @@
 
 open System
 open Microsoft.Extensions.Caching.Memory
+open Serilog
 
 open Infra.Mediation
 open Infra.Storage
+open Infra.Http
 
-open Types
 open Pipeline
+open Types.Application
 open Database.Users
+open Database.Aplications
+open Services.CreditCheck
+
+open Handlers
 open Handlers.ApplicationHandlers
 
-let composeModules () : MediatorState<WebHandlerContext, HandlerError> =
-    let newGuid () = Guid.NewGuid()
-    let clock () = NodaTime.SystemClock.Instance.GetCurrentInstant()
+let composeModules (log: ILogger) : MediatorState<WebHandlerContext, HandlerError> =
+
+    let newGuid = Guid.NewGuid
     let store = KeyValueStore.connect "in-memory"
     let cache = new MemoryCache(MemoryCacheOptions())
+    let httpClient = new System.Net.Http.HttpClient()
+    let fetch = fetch httpClient
+    let checkCredit = checkCredit log fetch
 
     let withTransaction handler =
         startTransaction store handler
 
-    let withAppAuth handler transaction message =
+    let withAuthentication handler transaction message =
         let getUser = UserQueries.getUser transaction
         let insertUser = UserCommands.insertUser transaction
         authHandler cache getUser insertUser (handler transaction) message
 
-    (*
-    (validateModel: Application -> Result<unit, ValidationErrors>)
-    (creditCheck: Application -> Async<Result<CreditCheckResult, RemoteCallError>>)
-    (saveApplication: Application -> Async<Result<unit, DatabaseWriteError>>)
-    *)
-
     let commandHandlers =
         [
-            (fun transaction -> SubmitApplicationCommandHandler.handle clock newGuid _ _ _ _ _) |> withAppAuth |> withTransaction |> toHandlerAsync
+            (fun transaction ->
+                let insertApplicationSubmission = ApplicationCommands.insertApplicationSubmission transaction
+                SubmitApplicationCommandHandler.handle newGuid checkCredit insertApplicationSubmission
+            ) |> withAuthentication |> withTransaction |> toHandlerAsync
         ]
 
     {

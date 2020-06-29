@@ -1,4 +1,4 @@
-﻿namespace Types.Security
+﻿namespace Types.Security.Web
 
 open System
 
@@ -14,6 +14,9 @@ and WebUserIdentity =
         permissions: string list
     }
 
+namespace Types.Security.App
+    
+open System
 
 type AppSecurityPrincipal =
     | Anonymous

@@ -81,7 +81,7 @@ let (|ServerError|_|) (response: HttpResponse) =
 
 let fetch (client: HttpClient) (request: HttpRequest) = async {
     let method = request.Method |> Option.defaultValue HttpMethod.Get
-    let content = request.Content |> Option.defaultValue (new StringContent(null) :> HttpContent)
+    let content = request.Content |> Option.defaultValue (new StringContent("") :> HttpContent)
     let headers = request.Headers |> Option.defaultValue (Map [])
 
     use request =
@@ -101,8 +101,10 @@ let fetch (client: HttpClient) (request: HttpRequest) = async {
         return Ok payload
 
     with
+    | :? System.Net.Sockets.SocketException as e -> return NetworkError e.Message |> Error
     | :? HttpRequestException as e -> return NetworkError e.Message |> Error
     | :? TaskCanceledException as e -> return Cancelled |> Error
+    | e -> return NetworkError e.Message |> Error
 }
 
 type Fetch = HttpRequest -> AsyncResult<HttpResponse, HttpError>

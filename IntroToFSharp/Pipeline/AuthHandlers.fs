@@ -2,7 +2,9 @@
 module Pipeline.AuthHandlers
 
 open Microsoft.Extensions.Caching.Memory
-open Types
+open Types.Application
+open Types.Security
+open Types.Security.App
 open Infra.Guids
 open Infra.Mediation.MessageContracts
 open Database.Users
@@ -14,15 +16,15 @@ let authHandler
     handler
     (m: Context<WebHandlerContext, 'a>) = async {
 
-    let mapMessage (principal: AppSecurityPrincipal) =
+    let mapMessage (principal: App.AppSecurityPrincipal) =
         { payload = m.payload; context = { log = m.context.log; principal = principal } }
 
     match m.context.principal with
-    | WebSecurityPrincipal.Anonymous ->
-        return! handler (mapMessage AppSecurityPrincipal.Anonymous)
-    | WebSecurityPrincipal.System ->
-        return! handler (mapMessage AppSecurityPrincipal.System)
-    | WebSecurityPrincipal.User auth ->
+    | Web.Anonymous ->
+        return! handler (mapMessage App.Anonymous)
+    | Web.System ->
+        return! handler (mapMessage App.System)
+    | Web.User auth ->
         let! user =
             cache.GetOrCreateAsync(auth.id, (fun _ -> Async.StartAsTask <| async {
                 let! userId = getUser auth.id
@@ -46,6 +48,6 @@ let authHandler
                     }
             })) |> Async.AwaitTask
 
-        let message = mapMessage (AppSecurityPrincipal.User user)
+        let message = mapMessage (App.User user)
         return! handler message
 }

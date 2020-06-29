@@ -32,15 +32,15 @@ type LastName = LastName of string
 type DateOfBirth = DateOfBirth of LocalDate
 type PhoneNumber = PhoneNumber of string
 type EmailAddress = EmailAddress of string
-type UnverifiedEmailAddress = UnverifiedEmailAddress of EmailAddress
+type VerifiedEmailAddress = VerifiedEmailAddress of EmailAddress
 
 type PersonDetails =
     {
         GivenName: GivenName
         LastName: LastName
-        DateOfBirth: DateOfBirth // Validated
+        DateOfBirth: DateOfBirth
         ContactNumber: PhoneNumber
-        EmailAddress: UnverifiedEmailAddress
+        EmailAddress: EmailAddress
     }
 
 // Address & Delivery
@@ -119,7 +119,7 @@ type CreditAssessment =
     }
 
 // Billing and Payment
-type CardNumber = string
+type CardNumber = CardNumber of string
 
 type CardType = Visa | Mastercard
 type CCV = CCV of string

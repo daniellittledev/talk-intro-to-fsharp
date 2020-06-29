@@ -8,13 +8,13 @@ open Types.Security
 type WebHandlerContext =
     {
         log: ILogger
-        principal: WebSecurityPrincipal
+        principal: Web.WebSecurityPrincipal
     }
 
 type AppHandlerContext =
     {
         log: ILogger
-        principal: AppSecurityPrincipal
+        principal: App.AppSecurityPrincipal
     }
 
 type Clock = unit -> Instant

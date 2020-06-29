@@ -7,14 +7,14 @@ open Infra.Mediation
 open Types.Application
 
 open Database
-open Database.Aplications.SaveApplication
+open Database.Aplications.ApplicationCommands
 open Services.CreditCheck
 open DomainModel
 open Handlers
 
 type SubmitApplicationCommand =
     {
-        application: Application
+        Application: Application
     }
     interface ICommand
 
@@ -33,7 +33,7 @@ let handle
     =
     commandHandler<AppHandlerContext, SubmitApplicationCommand, HandlerError> (fun command -> asyncResult {
     let c = command.payload
-    let application = c.application
+    let application = c.Application
 
     // here we're "emulating" the symantics of exception handling but we have a few benifits
     // We know what functions can fail, and how they could fail
@@ -66,10 +66,4 @@ let handle
     return! insertApplicationSubmission submission
         |> AsyncResult.mapError DatabaseWriteError
 
-})  
-
-(*
-    (generateApplicantFingerprint: Application -> string)
-    (checkForMatchingApplicant: string -> Guid)
-    (checkForDuplicate: Application -> Async<Result<MatchStatus, DatabaseReadError>>)
-*)
+})
