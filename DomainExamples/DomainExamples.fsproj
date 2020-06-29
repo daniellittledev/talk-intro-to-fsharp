@@ -1,0 +1,23 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>netcoreapp3.1</TargetFramework>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <Compile Include="Domain\Approvals\File1.fs" />
+    <Compile Include="Domain\Contact2\VerifyAnEmail.fs" />
+    <Compile Include="Domain\ContactPassword\ContactSetASecurePassword.fs" />
+    <Compile Include="Domain\OHS\File1.fs" />
+    <Compile Include="Domain\Payments\Payments.fs" />
+    <Compile Include="Domain\SAAS\DomainA.fs" />
+    <Compile Include="Domain\SAAS\DomainB.fs" />
+    <Compile Include="Domain\SAAS\DomainC.fs" />
+    <Compile Include="Domain\SalesFunnel\File1.fs" />
+    <Content Include="Domain\SAAS\saas.txt" />
+    <Compile Include="Library.fs" />
+  </ItemGroup>
+
+  <ItemGroup />
+
+</Project>

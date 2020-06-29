@@ -1,0 +1,53 @@
+
+how many things are wrong with this design
+
+type Contact = {
+    FirstName: string
+    MiddleName: string
+    ListName: string
+    
+    EmailAddress: string
+    IsEmailVerified: bool
+}
+
+Domain modelling made functional
+
+
+- Functional programming is scary
+ - Functor
+ - Currying
+ - Catamorphism
+ - Applicative
+ - Monad
+ - Monoid
+
+- Unfamiliar
+ - Mappable
+ - Collapsable
+ - Chainable
+ - Aggregatable
+
+- Object originated programmis is scary
+ - Generics
+ - Polymorphism
+ - Interface
+ - Inheritence
+ - SOLID
+ - Covariance
+ 
+You don't think it scary because you are familar
+
+
+Part 1: The importance of Design
+Part 2: Understanding FP Type Systems
+- Compositon
+
+Payment types example (pretty good) 20min in
+
+Part 3: Domain Modelling with composable types
+- Optional values
+ (Types as Sets)
+ 
+ 
+Gets back to original example
+

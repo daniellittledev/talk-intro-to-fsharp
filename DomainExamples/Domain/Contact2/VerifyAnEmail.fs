@@ -1,0 +1,3 @@
+﻿module VerifyAnEmail
+
+//bool isEmailVerified

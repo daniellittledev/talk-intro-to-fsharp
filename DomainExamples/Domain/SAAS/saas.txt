@@ -1,0 +1,21 @@
+﻿(*
+Auth0: Tiered and based on active users
+Netlify
+Mixpanel
+Figma
+Hubspot
+Office365
+Zoom
+Twilio
+AzureDevOps
+Xero
+Zendesk
+Cloudflare
+Pulumi
+Seq
+Octopus Deploy
+Notion
+*)
+
+// Auto... no we might have different users/levels per app
+

@@ -1,0 +1,18 @@
+// functional first emphisis
+
+// Put, Get and Get All
+
+// Start with the domain of the application
+
+// Then composition root
+
+// Everything is about composition
+
+
+// Budget app?
+// Calc internet speed?
+
+// Commands and Events
+
+// track software for a startup
+
